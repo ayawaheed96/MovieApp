@@ -1,0 +1,8 @@
+.not{
+    width: 99vw;
+    height: 91vh;
+    margin: auto;
+    background-image: url('../../images/error404.png');
+    background-size: cover ;
+    opacity: 0.9;
+}

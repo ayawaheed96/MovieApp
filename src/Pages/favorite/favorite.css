@@ -1,0 +1,13 @@
+.mainFav{
+    background-color: #ccc;
+    height: 8vh;
+    padding: 5px;
+    margin-bottom: 10px ;
+    color: rgb(111, 27, 189);
+}
+.textFav{
+    font-size: 1.3rem;
+}
+span:hover{
+    cursor: pointer;
+}

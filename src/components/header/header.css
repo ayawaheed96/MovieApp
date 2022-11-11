@@ -1,0 +1,12 @@
+.link{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+
+}
+.link:hover{
+    color:rgb(135, 95, 172) ;
+}
+.navbrand{
+    color: rgb(135, 95, 172) !important;
+}
