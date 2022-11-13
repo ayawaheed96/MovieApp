@@ -1,32 +1,30 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../axios/axiosInstance";
 import Card from "../../components/card/card";
 import Spinner from '../../components/spinner/spinner';
+import changeMovies from "../../store/actions/changeMovies";
 
 import "./movies.css";
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
+  const dispatch=useDispatch()
+  const moviesFromState=useSelector(state=>state.movies.movies);
+  const currentPage=useSelector(state=>state.movies.page);
+  const[movies,setMovies]=useState([])
   const [pages, setPages] = useState({});
   const loader=useSelector((state)=>state.loader.loader);
 
   useEffect(() => {
-    axiosInstance
-      .get(`/movie/popular?api _key=`)
-      .then((res) => {
-        setMovies(res.data.results);
-        setPages({ page: res.data.page });
-        //console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    dispatch(changeMovies());
+    //console.log(moviesFromState)
+    setMovies(moviesFromState);
+    setPages({page:currentPage})
+  },[]);
 
   const handlePages = (event) => {
-    console.log(event.target.name);
+    //console.log(event.target.name);
     if (event.target.name === "prev") {
       if (pages.page > 1) {
         axiosInstance
