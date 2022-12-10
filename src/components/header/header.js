@@ -9,6 +9,11 @@ import "./header.css";
 const Header = () => {
   const [inputSearch, setInputSearch] = useState({ search: "" });
   const [searchReasult, setSearchResult] = useState([]);
+  const [expand, setExpand] = useState(true);
+
+  const toggleMenu=()=>{
+    setExpand((prev)=>!prev);
+  }
 
   const handleChanges = (e) => {
     setInputSearch({ search: e.target.value });
@@ -24,21 +29,21 @@ const Header = () => {
   };
   return (
     <>
-      <Navbar bg="dark" expand="lg">
+      <Navbar bg="dark" onToggle={toggleMenu} expanded={expand} expand='lg'>
         <Container>
           <Navbar.Brand href="#home" className="navbrand">
             Movie-App
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse  id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link className="mx-3 link" to="/">
+              <Link className="mx-3 link" to="/" onClick={()=>{toggleMenu()}}>
                 Home
               </Link>
-              <Link className="mx-3 link" to="/movies">
+              <Link className="mx-3 link" to="/movies" onClick={()=>{toggleMenu()}}>
                 Movies
               </Link>
-              <Link className="mx-3 link" to="/favorite">
+              <Link className="mx-3 link" to="/favorite" onClick={()=>{toggleMenu()}}>
                 Favorites
               </Link>
               <input
@@ -50,10 +55,10 @@ const Header = () => {
                 placeholder="search"
                 className='"border border-light col-xl-9'
               />
-              <Link className="mx-3 link" to="/login">
+              <Link className="mx-3 link" to="/login" onClick={()=>{toggleMenu()}}>
                 Login
               </Link>
-              <Link className="mx-3 link" to="/register">
+              <Link className="mx-3 link" to="/register" onClick={()=>{toggleMenu()}}>
                 Register
               </Link>
             </Nav>
